@@ -15,9 +15,11 @@ import paymentRoute from './routes/payment.route.js';
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://biblio-29afe.web.app',
-  credentials: true
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+app.options('*', cors());
 app.use('/api/payment', paymentRoute);
 // Connexion à la base données
 mongoose.connect(process.env.DATABASE,{
